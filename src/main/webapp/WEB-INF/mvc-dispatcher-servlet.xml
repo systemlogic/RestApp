@@ -18,7 +18,6 @@
 	<bean id="dataSource" destroy-method="close"
          class="org.apache.commons.dbcp.BasicDataSource">
 		<property name="driverClassName" value="${mysql.driver}" />
-		<property name="initialSize" value="3"/>
 		<property name="url" value="${mysql.url}" />
 		<property name="username" value="${mysql.user}" />
 		<property name="password" value="${mysql.password}" />
