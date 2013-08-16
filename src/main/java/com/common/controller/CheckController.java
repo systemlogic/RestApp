@@ -1,6 +1,7 @@
 package com.common.controller;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.xml.bind.annotation.XmlRootElement;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -11,11 +12,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class CheckController {
 	@ResponseBody @RequestMapping(value="/description", method = RequestMethod.GET )
-	public UID getDescription( @RequestBody final UID request, final HttpServletResponse httpResponse){
+	public UID getDescription(){
 		UID uid = new UID("Pranshi", "Dhingra");
 	    return uid;
 	}
 }
+@XmlRootElement
 class UID {
 	String firstname;
 	String lastName;
