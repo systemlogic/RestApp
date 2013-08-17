@@ -2,10 +2,12 @@ package com.common.model;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
-@XmlRootElement
+@XmlRootElement(name = "UID")
 public class UID {
 	String firstname;
 	String lastName;
+	public UID(){
+	}
 	public UID(String f,String l){
 		firstname = f ;
 		lastName = l;
