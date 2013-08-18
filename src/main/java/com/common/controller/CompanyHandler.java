@@ -19,6 +19,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.common.connection.DeptConnection;
 import com.common.model.Dept;
+import com.common.model.DeptList;
+import com.common.model.Message;
 
 @Controller
 @RequestMapping(value="/dept")
@@ -27,85 +29,77 @@ public class CompanyHandler {
 	@Autowired
 	DeptConnection connection;
 
-	@RequestMapping(method=RequestMethod.GET)
-	public ModelAndView getDepts(@RequestParam(value="petId", required=false) Integer petId,
+	@ResponseBody @RequestMapping(method=RequestMethod.GET)
+	public Object getDepts(@RequestParam(value="petId", required=false) Integer petId,
 			HttpServletRequest   request,
 			HttpServletResponse  response) throws Exception{
-		String result ;
-		ModelAndView mv = new ModelAndView();
+		DeptList result = null;
 		
 		try{
 			result = connection.getDepts();
 		}catch(Exception e){
-			mv.addObject("message", e.getMessage());
-			mv.setViewName("error");
-			return mv;	
+			Message msg = new Message();
+			msg.setMsg(e.getMessage());
+			return msg;
 		}
-		mv.addObject("message",result);
-		mv.setViewName("result");
-		return mv;	
+		
+		return result;	
 
 	}
 	
-	@RequestMapping(value="/{id}",method=RequestMethod.GET)
-	public String getDept(@PathVariable String id, HttpServletRequest   request,
+	@ResponseBody @RequestMapping(value="/{id}",method=RequestMethod.GET)
+	public Object getDept(@PathVariable String id, HttpServletRequest   request,
 			HttpServletResponse  response, ModelMap model) throws Exception{
-		String result ;
+		Dept result =null;
 		try{
 			result = connection.getDept(id);
 		}catch(Exception e){
-			model.addAttribute("message", e.getMessage());
-			return "error";	
+			Message msg = new Message();
+			msg.setMsg(e.getMessage());
+			return msg;	
 		}
-		model.addAttribute("message",result);
-		return "result";
+		return result;
 
 	}
-	@RequestMapping(value="/{deptid}/{deptDesc}",method=RequestMethod.POST)
+	@ResponseBody @RequestMapping(value="/{deptid}/{deptDesc}",method=RequestMethod.POST)
 	@Transactional
-	public String postDept(@PathVariable("deptid") String deptID, @PathVariable String deptDesc,
+	public Message postDept(@PathVariable("deptid") String deptID, @PathVariable String deptDesc,
 			HttpServletRequest   request,
 			HttpServletResponse  response, ModelMap model) throws Exception{
-		String result ;
+		Message result = new Message();
 		try{
-			result = connection.postDept(deptID, deptDesc);
+			result.setMsg(connection.postDept(deptID, deptDesc));
 		}catch(Exception e){
-			model.addAttribute("message", e.getMessage());
-			return "error";
+			result.setMsg(e.getMessage());	
 		}
-		model.addAttribute("message", result);
-		return "result";
+		return result;
 
 	}
-	@RequestMapping(value="/{deptid}/{deptDesc}",method=RequestMethod.PUT)
+	@ResponseBody @RequestMapping(value="/{deptid}/{deptDesc}",method=RequestMethod.PUT)
 	@Transactional
-	public String putDept(@PathVariable String deptid, @PathVariable String deptDesc,
+	public Message putDept(@PathVariable("deptid") String deptID, @PathVariable String deptDesc,
 			HttpServletRequest   request,
 			HttpServletResponse  response, ModelMap model) throws Exception{
-		String result ;
+		Message result = new Message();
 		try{
-			result = connection.putDept(deptid, deptDesc);
+			result.setMsg(connection.putDept(deptID, deptDesc));
 		}catch(Exception e){
-			model.addAttribute("message", e.getMessage());
-			return "error";
+			result.setMsg(e.getMessage());	
 		}
-		model.addAttribute("message", result);
-		return "result";
+		return result;
 
 	}
-	@RequestMapping(value="/{id}",method=RequestMethod.DELETE)
+	@ResponseBody @RequestMapping(value="/{id}",method=RequestMethod.DELETE)
 	@Transactional
-	public String deleteDept(@PathVariable String id, HttpServletRequest   request,
+	public Message deleteDept(@PathVariable String id, HttpServletRequest   request,
 			HttpServletResponse  response, ModelMap model) throws Exception{
-		String result ;
+		Message result = new Message();
 		try{
-			result = connection.deleteDept(id);
+			result.setMsg(connection.deleteDept(id));
 		}catch(Exception e){
-			model.addAttribute("message", e.getMessage());
-			return "error";	
+			result.setMsg(e.getMessage());	
 		}
-		model.addAttribute("message", result);
-		return "result";
+		return result;
 
 	}
 }

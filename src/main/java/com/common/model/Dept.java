@@ -1,5 +1,8 @@
 package com.common.model;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement(name = "Departments")
 public class Dept {
 	private String department;
 	private String deptDesc;
