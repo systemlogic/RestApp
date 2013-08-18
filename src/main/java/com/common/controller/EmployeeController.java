@@ -10,6 +10,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.common.connection.DeptConnection;
 import com.common.connection.EmpConnection;
@@ -21,17 +22,18 @@ public class EmployeeController {
 	EmpConnection connection;
 	
 	@RequestMapping(value="/emp/{id}",method=RequestMethod.GET)
-	public String getEmp(@PathVariable String id, HttpServletRequest   request,
-			HttpServletResponse  response, ModelMap model) throws Exception{
+	public ModelAndView getEmp(@PathVariable String id, HttpServletRequest   request,
+			HttpServletResponse  response, ModelAndView model) throws Exception{
 		String result ;
+		model.setViewName("result");
 		try{
 			result = connection.getEmp(id);
 		}catch(Exception e){
-			model.addAttribute("message", e.getMessage());
-			return "error";	
+			model.addObject("message", e.getMessage());
+			return model;	
 		}
-		model.addAttribute("message",result);
-		return "result";
+		model.addObject("message",result);
+		return model;
 
 	}
 	
