@@ -45,7 +45,7 @@ public class DeptConnection {
 	}
 	public Dept getDept(String id){
 		String sql = "SELECT * FROM dept WHERE department=?";
-		Dept dept = jdbctemp.queryForObject(
+		Dept dept = (Dept)jdbctemp.queryForObject(
 				sql, new Object[] { id }, new DeptRowMapper());
 		return dept;
 //		return "<Dept>" +

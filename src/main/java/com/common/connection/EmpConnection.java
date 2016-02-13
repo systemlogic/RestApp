@@ -37,7 +37,7 @@ public class EmpConnection {
 	public String getEmp(String id){
 		String sql ="select e.*, d.DeptDesc from emp e INNER JOIN dept d on d.department=e.department  where e.EmpId=?";
 		//String sql = "select emp.EmpId, emp.FirstName, emp.LastName, dept.DeptDesc from emp INNER JOIN dept on dept.department=emp.department  where emp.EmpId=?";
-		Emp emp = jdbctemp.queryForObject(
+		Emp emp = (Emp)jdbctemp.queryForObject(
 				sql, new Object[] { id }, new EmpRowMapper());
 		return "<Emp>" +
 		"\n\t\t<EmpID>" + emp.getEmpID()+"</EmpID>" +
