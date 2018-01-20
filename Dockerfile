@@ -7,4 +7,4 @@ MAINTAINER Harish Arora
 #echo "Y" | apt-get update && \
 #echo "Y" | apt install oracle-java8-installer python maven
 
-RUN cd systemlogic/RestApp && maven clean install
+RUN maven clean install
