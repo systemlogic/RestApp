@@ -7,4 +7,4 @@ MAINTAINER Harish Arora
 #echo "Y" | apt-get update && \
 #echo "Y" | apt install oracle-java8-installer python maven
 
-RUN maven clean install
+RUN mvn clean install
