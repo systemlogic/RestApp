@@ -4,4 +4,5 @@ MAINTAINER Kimbro Staken
 RUN  apt-get  update  && \
 echo "Y" | apt-get install software-properties-common && \
 echo "Y" | add-apt-repository ppa:webupd8team/java && \
-apt-get update && apt install oracle-java8-installer  python maven \
+echo "Y" | apt-get update && \
+echo "Y" | apt install oracle-java8-installer python maven
