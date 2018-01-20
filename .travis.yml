@@ -7,8 +7,6 @@ services:
 
 before_install:
   - pwd
-  - ls
-  - cd systemlogic/RestApp
   - mvn clean install
   - echo "Testing Docker Hub credentials"
   - sudo docker login -u=harshkarora -p=Pranshi@03
