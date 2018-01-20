@@ -8,7 +8,7 @@ services:
 
 before_install:
   - echo "Testing Docker Hub credentials"
-  - docker login -e=$DOCKER_EMAIL -u=$DOCKER_USERNAME -p=$DOCKER_PASSWORD
+  - docker login -e=harsh.k.arora@gmail.com -u=harshkarora -p=Pranshi@03
   - echo "Docker Hub credentials are working"
   - docker build -t build-springxd-base .
 
