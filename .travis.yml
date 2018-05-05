@@ -14,4 +14,4 @@ before_install:
   - docker pull ibmcom/cloudant-developer
 
 script:
-  - docker images
+  - docker ps -a
