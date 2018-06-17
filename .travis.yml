@@ -2,6 +2,11 @@ sudo: required
 
 language: java
 
+cache:
+  timeout: 180
+  directories:
+  - /home/travis/.m2
+
 services:
   - docker
 
