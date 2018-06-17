@@ -4,6 +4,7 @@ language: java
 
 cache:
   timeout: 180
+  size: 5
   directories:
   - /home/travis/.m2
 
