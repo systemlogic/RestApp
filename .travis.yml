@@ -9,7 +9,7 @@ before_install:
   - pwd
   - mvn clean install
   - echo "Testing Docker Hub credentials"
-  - sudo docker login -u=harshkarora -p=Pranshi@03
+  - sudo docker login -u=harshkarora -p=$password
   - echo "Docker Hub credentials are working"
   - docker pull python:2.7-slim-jessie
 
