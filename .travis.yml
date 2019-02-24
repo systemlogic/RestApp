@@ -2,6 +2,12 @@ sudo: required
 
 language: java
 
+cache:
+  timeout: 180
+  size: 5
+  directories:
+  - /home/travis/.m2
+
 services:
   - docker
 
@@ -9,9 +15,11 @@ before_install:
   - pwd
   - mvn clean install
   - echo "Testing Docker Hub credentials"
-  - sudo docker login -u=harshkarora -p=Pranshi@03
+  - sudo docker login -u=harshkarora -p=$password
   - echo "Docker Hub credentials are working"
-  - docker pull python:2.7-slim-jessie
 
 script:
   - docker ps -a
+  - docker pull maven:alpine
+  - export image=maven
+#  - docker  run --name $image -v /var/run/docker.sock:/var/run/docker.sock  -it -w /app -e JAVA_OPTS='-Xmx1g' --mount type=bind,source="/home/travis/.m2",target=/root/.m2 maven:alpine /bin/bash -c "bash mvn clean install"

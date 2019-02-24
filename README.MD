@@ -1,2 +1,1 @@
-This is sample file
-Travis test
+# This is sample file
