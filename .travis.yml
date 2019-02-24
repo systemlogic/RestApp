@@ -22,4 +22,4 @@ script:
   - docker ps -a
   - docker pull maven:alpine
   - export image=maven
-#  - docker  run --name $image -v /var/run/docker.sock:/var/run/docker.sock  -it -w /app -e JAVA_OPTS='-Xmx1g' --mount type=bind,source="/home/travis/.m2",target=/root/.m2 maven:alpine /bin/bash -c "bash mvn clean install"
+##  - docker  run --name $image -v /var/run/docker.sock:/var/run/docker.sock  -it -w /app -e JAVA_OPTS='-Xmx1g' --mount type=bind,source="/home/travis/.m2",target=/root/.m2 maven:alpine /bin/bash -c "bash mvn clean install"
